@@ -1,0 +1,11 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "webapp.js",
+  "scripts": {
+    "start" : "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

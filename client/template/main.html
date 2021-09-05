@@ -1,0 +1,38 @@
+<!doctype html>
+<FONT face="Arial Narrow">
+<html>
+    <head>
+        <title>antwar</title>
+        <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
+        <script src = "./plugin/jquery.js"></script>
+        <script src = "script/main.js"></script>
+        <link rel = "stylesheet" href = "./style/main.css">
+    </head>
+    <body>
+        <div id = "login_form">
+            <span id = "server_select">
+                <a id = "server_logo">🌐</a>
+                <select id = "server_list">
+                    <option value = "set">Server</option>
+                </select>
+            </span>
+            <span id = "login">
+                <a id = login_logo">🔒 Login</a><br>
+                <input id = "ID" type = "text" placeholder = "ID"></input><br>
+                <input id = "PW" type = "password" placeholder = "PW"></input><br>
+                <button id = "login" onclick = "login()">Login</button>
+                <button id = "join" onclick = "">Join</button>
+                <button id = "credit" onclick = "">Credit</button>
+                <span id = "message">
+                    <p id = "message-1">v0.0.1-alpha</p>
+                    <p id = "message-2">Main dev - LSJ#3913 (discord)</p>
+                </span>
+            </span>
+        </div>
+        <div id = "main_scene">
+
+        </div>
+    </body>
+</html>
+</FONT>
