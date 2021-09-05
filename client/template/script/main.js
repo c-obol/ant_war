@@ -2,7 +2,7 @@ var servers = {}
 var id, pw
 var host, port
 var sock
-
+//test
 function login() {
     load_server_list()
     var index = $("select#server_list option:selected").val()
