@@ -38,6 +38,8 @@ def request(message):
 
         elif user_list[message["profile"]["id"]]["pw"] == message["profile"]["pw"]:
             send_message["type"] = send_type[0]
+            online_player.append(message["profile"])
+
             print("[CONNECT] - ", end = "")
             print(message["profile"]["id"])
 

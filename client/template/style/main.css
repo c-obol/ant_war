@@ -1,6 +1,6 @@
-html, body {
+/*html, body {
     overflow : hidden;
-}
+}*/
 html > * {
     -ms-user-select: none; 
     -moz-user-select: -moz-none;
@@ -92,34 +92,8 @@ button#join {
     background-color : white;
     border : white 1px solid;
     color : rgb(150, 150, 150);
-    top : 200%;
-    transform : translate(-53%, 190%);
-}
-button#join:hover,
-button#credit:hover {
-    color : rgb(25, 25, 25);
-}
-span#message {
-    position : absolute;
-    font-size : 13.5px;
-    top : 210%;
-    text-align : left;
-    color : rgb(150, 150, 150);
-    width : 100%;
-    transform : translate(-13.5px, 0%);
-}
-span#message > p {
-    position : absolute;
-    width : 100%;
-
-}
-p#message-1 {
-    position : absolute;
-    transform : translate(0%, 200%);
-}
-p#message-2 {
-    position : absolute;
-    transform : translate(0%, 300%);
+    top : 77.5%;
+    transform : translate(43%, 190%);
 }
 button#credit {
     position : absolute;
@@ -128,8 +102,31 @@ button#credit {
     background-color : white;
     border : white 1px solid;
     color : rgb(150, 150, 150);
-    top : 200%;
-    transform : translate(-43%, 485%);
+    top : 77.2%;
+    transform : translate(36%, 485%);
+}
+button#join:hover,
+button#credit:hover {
+    color : rgb(25, 25, 25);
+}
+span#message {
+    position : absolute;
+    font-size : 13.5px;
+    top : 84.5%;
+    text-align : left;
+    color : rgb(150, 150, 150);
+    width : 100%;
+    transform : translate(-13.5px, 0%);
+}
+p#message-1 {
+    position : absolute;
+    width : 100%;
+    transform : translate(13%, 0%);
+}
+p#message-2 {
+    position : absolute;
+    width : 100%;
+    transform : translate(13%, 110%);
 }
 
 div#main_scene {
@@ -138,12 +135,4 @@ div#main_scene {
     height : 100%;
     left : 28%;
     top : 0%;
-}
-
-div#server_scene,
-div#join_scene,
-div#credit_scene {
-    position : absolute;
-    width : 100%;
-    height : 100%;
 }
