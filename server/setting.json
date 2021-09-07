@@ -1,5 +1,5 @@
 {
     "max_room" : 5,
-    "host_address" : "localhost",
-    "port" : "80"
+    "host_address" : "127.0.0.1",
+    "port" : "8080"
 }
