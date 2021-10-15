@@ -6,26 +6,25 @@
         <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
         <script src = "./plugin/jquery.js"></script>
+
         <script src = "script/main.js"></script>
         <link rel = "stylesheet" href = "./style/main.css">
     </head>
     <body>
-        <button id = "setting_button"></button>
         <div id = "server_form">
             <input type = "text" id = "name" placeholder = "NAME"></input>
 
             <select id = "server_list">
-
+                <option value = ":">select_server</option>
+                <option value = "127.0.0.1:7700">localhost</option>
             </select>
-            <button id = "add_server" onclick = "">add</button>
 
-            <div id = "add_server">
+            <div id = "server_input">
                 <input type = "text" id = "host" placeholder = "HOST"></input>
                 <input type = "text" id = "port" placeholder = "PORT"></input>
             </div>
 
-            <button id = "local_server" onclick = "">local_server</button>
-            <button id = "submit" onclick = "">connect</button>
+            <button id = "connect" onclick = "connect_server()">connect</button>
         </div>
     </body>
 </html>
