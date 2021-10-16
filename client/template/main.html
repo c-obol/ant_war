@@ -4,7 +4,7 @@
     <head>
         <title>antwar</title>
         <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.min.js"></script>
         <script src = "./plugin/jquery.js"></script>
 
         <script src = "script/main.js"></script>
@@ -13,6 +13,11 @@
     <body>
         <div id = "server_form">
             <input type = "text" id = "name" placeholder = "NAME"></input>
+
+            <!--
+                server_input, connect - form으로 묶기
+                jquery .submit 메소드로 connect 버튼 클릭 감지 하여 서버 체크 및 이름 제출
+            -->
 
             <select id = "server_list">
                 <option value = ":">select_server</option>

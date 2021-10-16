@@ -1,0 +1,46 @@
+<!doctype html>
+<FONT face="Arial Narrow">
+<html>
+    <head>
+        <title>antwar - {{server.name}}</title>
+        <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+        <script lang = "javascript">
+            function enter_room(name) {
+                var room_password = "";
+            }
+        </script>
+    
+        <style>
+            div#room_list{
+                border: 1px solid black;
+            }
+            div#room_detail{
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "top">
+            <button id = "new_room" onclick = "">new_room</button>
+            <p id = "server_name">🌍 {{server.name}}</p>
+            <input type = "text" id = "search"></input>
+            <button id = "search_confirm" onclick = "">🔍</button>
+        </div>
+        <div id = "room_list">
+            {% for name in room.name %}
+                <button id = "{{name}}" onclick = "enter_room('{{name}}')">
+
+                    <p id = "r_name">{{name}}</p>
+                    <p id = r_player>{{room.list[name].player_cnt}} / {{room.list[name].max_player}}</p>
+
+                    {% if room.list[name].lock %}
+                        <p id = "lock_icon">🔒</p>
+                    {% endif %}
+
+                </button>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+</FONT>

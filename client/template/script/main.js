@@ -19,7 +19,6 @@ window.onload = function() {
 
 function connect_server() {
     var name = $("input#name").val();
-
     var host = $("input#host").val();
     var port = $("input#port").val();
 
@@ -32,18 +31,34 @@ function connect_server() {
         return;
     }
 
-    var url = `https://${host}:${port}`;
+    var url = `http://${host}:${port}`;
     var socket = io.connect(url);
 
-    var server_check = true
-    if (server_check){
-        socket.on('connect', function() {
-        })
-        socket.io.on('error', function (err) {
-            alert("The server is not run smoothly.");
+    $("html").html(`
+        <title>antwar</title>
+        <FONT face = "Arial Narrow">
+            <center>
+                <p>connecting...</p>
+            </center>
+        </FONT>
+    `);
+
+    socket.on('connect', function(){if (!server_check) {return}});
+
+    var load_count = 0;
+    var loading = setInterval(function () {
+        if (load_count >= 20) {
+            alert("Fail");
+
             socket.disconnect();
-            return;
-        })
-        servers = false;
-    }
+            clearInterval(loading);
+
+            location.reload();
+        }
+        if (socket.connected) {
+            window.location.href = url;
+            clearInterval(loading);
+        }
+        load_count++;
+    }, 250);
 }
