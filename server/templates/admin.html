@@ -1,0 +1,39 @@
+<!doctype html>
+<FONT face="Arial Narrow">
+<html>
+    <head>
+        <title>antwar - admin</title>
+        <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    </head>
+    <body>
+        <button id = "reload_button" onclick = "location.reload();">🔄</button>
+        <select id = "room_list">
+            <option value = "">select_room</option>
+        </select>
+
+        <script>var room_array = new Object();</script>
+        {% for name in room.name %}
+            <script>
+                room_array["{{name}}"] = new Object();
+
+                room_array["{{name}}"]["password"] = "{{room.list[name].password}}";
+                room_array["{{name}}"]["lock"] = (room_array["{{name}}"]["password"] != "");
+            
+                room_array["{{name}}"]["players"] = [];
+
+                $("#room_list").append(`
+                    <option value = "{{name}}">
+                        {{name}}
+                    </option>
+                `);
+            </script>
+
+            {% for player_name in room.list[name].player_list %}
+                <script>
+                    room_array["{{name}}"]["players"].push("{{player_name}}");
+                </script>
+            {% endfor %}
+        {% endfor %}
+    </body>
+</html>
+</FONT>

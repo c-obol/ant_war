@@ -6,10 +6,26 @@
         <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
         <script lang = "javascript">
+            var room_array = new Object();
+
             function enter_room(name) {
                 var room_password = "";
             }
         </script>
+
+        {% for name in room.name %}
+            <script>
+                room_array["{{name}}"] = new Object();
+                room_array["{{name}}"]["password"] = "{{room.list[name].password}}";
+                room_array["{{name}}"]["players"] = [];
+            </script>
+
+            {% for player_name in room.list[name].player_list %}
+                <script>
+                    room_array["{{name}}"]["players"].push("{{player_name}}")
+                </script>
+            {% endfor %}
+        {% endfor %}
     
         <style>
             div#room_list{
@@ -22,10 +38,11 @@
     </head>
     <body>
         <div id = "top">
-            <button id = "new_room" onclick = "">new_room</button>
-            <p id = "server_name">🌍 {{server.name}}</p>
+            <input type = "text" id = "name" placeholder = "NAME"></input>
+            <p id = "server_name">🌏 {{server.name}}</p>
             <input type = "text" id = "search"></input>
             <button id = "search_confirm" onclick = "">🔍</button>
+            <button id = "new_room" onclick = "">new_room</button>
         </div>
         <div id = "room_list">
             {% for name in room.name %}

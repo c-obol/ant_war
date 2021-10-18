@@ -2,10 +2,10 @@
     "server_name" : "localhost",
 
     "max_room" : 5,
-    "host_address" : "0.0.0.0",
+    "host_address" : "127.0.0.1",
     "port" : "7700",
 
-    "admin_id" : [
-        "admin"
-    ]
+    "admins" : {
+        "admin" : "admin"
+    }
 }

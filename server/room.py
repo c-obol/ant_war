@@ -8,7 +8,7 @@ class room():
         self.password = password
         self.lock = len(password) != 0
 
-    def new_player():
+    def new_player(name):
         pass
 
-room_list = {"room1" : room(5, 20, "12-309"), "room2" : room(3, 15, "")}
+room_list = {"room1" : room(5, 20, "sdakljflsdiejerlekd"), "room2" : room(3, 15, "")}

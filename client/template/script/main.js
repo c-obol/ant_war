@@ -18,18 +18,8 @@ window.onload = function() {
 }
 
 function connect_server() {
-    var name = $("input#name").val();
     var host = $("input#host").val();
     var port = $("input#port").val();
-
-    if (name == "" || host == "" || port == "") {
-        alert("please check input values.");
-        return;
-    }
-    if (name.indexOf(' ') != -1) {
-        alert("Name can't include space.");
-        return;
-    }
 
     var url = `http://${host}:${port}`;
     var socket = io.connect(url);
