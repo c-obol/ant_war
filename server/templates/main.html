@@ -4,28 +4,53 @@
     <head>
         <title>antwar - {{server.name}}</title>
         <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.min.js"></script>
 
-        <script lang = "javascript">
-            var room_array = new Object();
-
-            function enter_room(name) {
-                var room_password = "";
-            }
-        </script>
-
+        <script lang = "javascript">var room_array = new Object();</script>
         {% for name in room.name %}
             <script>
                 room_array["{{name}}"] = new Object();
                 room_array["{{name}}"]["password"] = "{{room.list[name].password}}";
+                room_array["{{name}}"]["lock"] = (room_array["{{name}}"]["password"] != "");
                 room_array["{{name}}"]["players"] = [];
             </script>
 
             {% for player_name in room.list[name].player_list %}
                 <script>
-                    room_array["{{name}}"]["players"].push("{{player_name}}")
+                    room_array["{{name}}"]["players"].push("{{player_name}}");
                 </script>
             {% endfor %}
         {% endfor %}
+
+        <script>
+            function enter_room(room) {
+
+            }
+
+            function check_enter_room(name) {
+                var name = $("input#name").val();
+
+                if (name == "" || name.indexOf('"') != -1) {
+                    if (name == "") {
+                        alert("Please check your name.");
+                        return;
+                    }
+                    if (name.indexOf('"') != -1) {
+                        alert("Name can't include double quotes.");
+                        return;
+                    }
+                }
+
+                if (room_array[name].lock) {
+                    var room_pw = prompt("Please enter yout password.");
+                    if (room_pw != room_array[name].password) {
+                        alert("Unsuited password.");
+                        return;
+                    }
+                }
+                enter_room(name);
+            }
+        </script>
     
         <style>
             div#room_list{
@@ -46,7 +71,7 @@
         </div>
         <div id = "room_list">
             {% for name in room.name %}
-                <button id = "{{name}}" onclick = "enter_room('{{name}}')">
+                <button id = "{{name}}" onclick = "check_enter_room('{{name}}')">
 
                     <p id = "r_name">{{name}}</p>
                     <p id = r_player>{{room.list[name].player_cnt}} / {{room.list[name].max_player}}</p>
