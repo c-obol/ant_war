@@ -11,4 +11,8 @@ class room():
     def new_player(name):
         pass
 
-room_list = {"room1" : room(5, 20, "sdakljflsdiejerlekd"), "room2" : room(3, 15, "")}
+room_list = {
+    "fast_food" : room(5, 20, "1234"),
+    "slow_food" : room(3, 15, ""),
+    "drink" : room(3, 15, "")
+}

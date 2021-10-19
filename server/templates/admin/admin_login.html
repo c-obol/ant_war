@@ -11,6 +11,10 @@
             <input type = "password" id = "PW" name = "PW" placeholder = "PW"></input>
             <input type = "submit" id = "SUBMIT" value = "SUBMIT"></input>
         </form>
+
+        {% if msg == "error" %}
+            <p id = "message" style = "color : red;">error</p>
+        {% endif %}
     </body>
 </html>
 </FONT>

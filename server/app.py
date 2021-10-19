@@ -34,7 +34,7 @@ def main():
 
 @app.route('/admin_login')
 def admin_login():
-    return render_template("./admin_login.html")
+    return render_template("./admin/admin_login.html")
 
 @app.route('/admin', methods = ['GET', 'POST'])
 def admin():
@@ -44,13 +44,13 @@ def admin():
 
         if id in admins.keys():
             if pw == admins[id]:
-                return render_template("./admin.html",
+                return render_template("./admin/admin.html",
                     room = {"list" : room_list, "name" : room_list.keys()}
                 )
-        return "<script>alert('Error')</script>"
+        return render_template("./admin/admin_login.html", msg = "error")
 
     except:
-        return "<script>alert('Error')</script>"
+        return render_template("./admin/admin_login.html", msg = "error")
 
 # ================================================================ #
 

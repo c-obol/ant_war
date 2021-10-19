@@ -4,13 +4,13 @@
     <head>
         <title>antwar - admin</title>
         <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>window.$ = window.jQuery = require('jquery');</script>
     </head>
     <body>
         <button id = "reload_button" onclick = "location.reload();">🔄</button>
         <select id = "room_list">
             <option value = "">select_room</option>
         </select>
-
 
         <script>var room_array = new Object();</script>
         {% for name in room.name %}

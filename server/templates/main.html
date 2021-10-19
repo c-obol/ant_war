@@ -3,31 +3,25 @@
 <html>
     <head>
         <title>antwar - {{server.name}}</title>
-        <script src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>window.$ = window.jQuery = require('jquery');</script>
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.min.js"></script>
-
-        <script lang = "javascript">var room_array = new Object();</script>
-        {% for name in room.name %}
-            <script>
-                room_array["{{name}}"] = new Object();
-                room_array["{{name}}"]["password"] = "{{room.list[name].password}}";
-                room_array["{{name}}"]["lock"] = (room_array["{{name}}"]["password"] != "");
-                room_array["{{name}}"]["players"] = [];
-            </script>
-
-            {% for player_name in room.list[name].player_list %}
-                <script>
-                    room_array["{{name}}"]["players"].push("{{player_name}}");
-                </script>
-            {% endfor %}
-        {% endfor %}
-
+    
+        <style>
+            div#room_list{
+                border: 1px solid black;
+            }
+            div#room_detail{
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
         <script>
-            function enter_room(room) {
-
+            function enter_room(name) {
+                console.log("correct");
             }
 
-            function check_enter_room(name) {
+            function check_enter_room(room_name) {
                 var name = $("input#name").val();
 
                 if (name == "" || name.indexOf('"') != -1) {
@@ -41,43 +35,81 @@
                     }
                 }
 
-                if (room_array[name].lock) {
-                    var room_pw = prompt("Please enter yout password.");
-                    if (room_pw != room_array[name].password) {
+                if (room_array[room_name].lock) {
+                    var room_pw = $(`button#${room_name} > input#room_password`).val();
+
+                    if (room_pw == "") { return; }
+                    if (room_pw != room_array[room_name].password) {
                         alert("Unsuited password.");
                         return;
                     }
                 }
-                enter_room(name);
+                enter_room(room_name);
             }
         </script>
-    
-        <style>
-            div#room_list{
-                border: 1px solid black;
+        <script>var room_array = new Object();</script>
+        {% for name in room.name %}
+            <script>
+                room_array["{{name}}"] = new Object();
+                room_array["{{name}}"]["password"] = "{{room.list[name].password}}";
+                room_array["{{name}}"]["max_player"] = "{{room.list[name].max_player}}";
+                room_array["{{name}}"]["lock"] = (room_array["{{name}}"]["password"] != "");
+                room_array["{{name}}"]["players"] = [];
+            </script>
+
+            {% for player_name in room.list[name].player_list %}
+                <script>
+                    room_array["{{name}}"]["players"].push("{{player_name}}");
+                </script>
+            {% endfor %}
+        {% endfor %}
+
+        <script>
+            function search_room() {
+                $("div#room_list").empty();
+                var search_content = $("input#search").val();
+
+                for (let i = 0; i < Object.keys(room_array).length; i++) {
+                    var room_name = Object.keys(room_array)[i];
+                    var room = room_array[room_name];
+
+                    if (room_name.indexOf(search_content) != -1) {
+                        $("div#room_list").append(`
+                            <button id = "${room_name}" onclick = "check_enter_room('${room_name}')">
+                                <p id = "r_name">${room_name}</p>
+                                <p id = r_player>${room_array[room_name]["players"].length} / ${room_array[room_name]["max_player"]}</p>
+                            </button>
+                        `);
+                    }
+
+                    if (room_array[room_name]["lock"]) {
+                        $(`button#${room_name}`).append(`
+                            <p id = "lock_icon">🔒</p>
+                            <input type = "text" id = "room_password" placeholder = "PW"></input>
+                        `);
+                    }
+                }
             }
-            div#room_detail{
-                border: 1px solid black;
-            }
-        </style>
-    </head>
-    <body>
+        </script>
+
         <div id = "top">
             <input type = "text" id = "name" placeholder = "NAME"></input>
             <p id = "server_name">🌏 {{server.name}}</p>
+
             <input type = "text" id = "search"></input>
-            <button id = "search_confirm" onclick = "">🔍</button>
+            <button id = "search_confirm" onclick = "search_room()">🔍</button>
+
             <button id = "new_room" onclick = "">new_room</button>
         </div>
         <div id = "room_list">
             {% for name in room.name %}
                 <button id = "{{name}}" onclick = "check_enter_room('{{name}}')">
-
                     <p id = "r_name">{{name}}</p>
                     <p id = r_player>{{room.list[name].player_cnt}} / {{room.list[name].max_player}}</p>
 
                     {% if room.list[name].lock %}
                         <p id = "lock_icon">🔒</p>
+                        <input type = "text" id = "room_password" placeholder = "PW"></input>
                     {% endif %}
 
                 </button>
